@@ -9,3 +9,9 @@ spring:
   h2:
     console:
       enabled: true
+
+management:
+  endpoint:
+    health:
+      enabled: true
+      show-details: always

@@ -1,0 +1,16 @@
+# Retries: https://rajcrk.medium.com/spring-cloud-stream-kafka-the-story-of-retry-and-dead-letter-queue-c51c70354248
+# Interesting Retry example: https://cloud.spring.io/spring-cloud-stream-binder-kafka/multi/multi__apache_kafka_binder.html#kafka-dlq-processing
+
+spring:
+  cloud:
+    stream:
+      bindings:
+        upperCase-in-0:
+          destination: uppercase-in
+          group: spring-retries-app
+          consumer:
+            maxAttempts: 5 # initial+4 retries
+            backOffInitialInterval: 2000
+            backOffMaxInterval: 10000
+            backoffMultiplier: 2.0
+            defaultRetryable: false
